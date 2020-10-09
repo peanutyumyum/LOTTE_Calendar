@@ -6,4 +6,4 @@ def home(request):
     context = {
 
     }
-    return render(request, 'home.html', comtext)
+    return render(request, 'home.html', context)
