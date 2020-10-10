@@ -1,7 +1,9 @@
 # LOTTE Calendar
+
 <img src="https://user-images.githubusercontent.com/63117632/95637964-24b03300-0ace-11eb-83c5-6e9a8311aff4.png">
 
 ## Flow Chart
+
 <img src="https://user-images.githubusercontent.com/63117632/95637803-9fc51980-0acd-11eb-936a-1bd932d51ba9.png">
 
 ### Developer
@@ -12,6 +14,6 @@ Gang minji, Kim jieun, Kim jinwoo, JYP, Lee euna, Jung jiwon
 |디자인|강민지|소개|
 |HTML,CSS|김진우|소개|
 |기능구현|김지은|소개|
-|기능구현|JYP|소개|
+|기능구현|JYP|안녕하세유 개발자 박지윤입니다👻|
 |기능구현|이은아|소개|
 |기능구현|정지원|소개|
