@@ -15,5 +15,5 @@ Gang minji, Kim jieun, Kim jinwoo, JYP, Lee euna, Jung jiwon
 |HTML,CSS|김진우|소개|
 |기능구현|김지은|소개|
 |기능구현|JYP|안녕하세유 개발자 박지윤입니다 👻👻|
-|기능구현|이은아|소개|
+|기능구현|이은아|소프트웨어학부 2학년 휴학|
 |기능구현|정지원|소개|
