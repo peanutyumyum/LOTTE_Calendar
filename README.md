@@ -7,3 +7,8 @@
 ### Developer
 
 Gang minji, Kim jieun, Kim jinwoo, JYP, Lee euna, Jung jiwon
+|역할|이름|소개|
+|------|---|---|
+|테스트1|테스트2|테스트3|
+|테스트1|테스트2|테스트3|
+|테스트1|테스트2|테스트3|
