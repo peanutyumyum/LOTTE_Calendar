@@ -33,8 +33,13 @@ OPTIONS = """{  timeFormat: "H:mm",
 
 def index(request):
     event_url = 'all_events/'
-    return render(request, 'index.html', {'calendar_config_options': calendar_options(event_url, OPTIONS)})
+    print(calendar_options(event_url, OPTIONS))
+    print("hello")
+    return render(request, 'demo/index.html', {'calendar_config_options': calendar_options(event_url, OPTIONS)})
 
 def all_events(request):
     events = CalendarEvent.objects.all()
     return HttpResponse(events_to_json(events), content_type='application/json')
+
+def home(request):
+    return render(request,'home.html')
