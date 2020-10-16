@@ -6,4 +6,4 @@ def login(request):
     context = {
         
     }
-    return render(request, 'login.html', comtext)
+    return render(request, 'login.html', context)

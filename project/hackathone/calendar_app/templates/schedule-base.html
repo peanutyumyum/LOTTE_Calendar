@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load fullcalendar_tags %}
+
+        {% fullcalendar_css %}
+        {% fullcalendar_print_css %}
+        {% fullcalendar_jquery %}
+        {% fullcalendar_jquery_ui %}
+        {% fullcalendar_javascript %}
+
+        {% calendar_init calendar_config_options %}
+
+        {% block extra_style %}
+        {% endblock %}
+    </head>
+    <body>
+        <!-- 주의 : 이 곳에 jquery script를 작성하면, fullcalendar가 작동되지 않는다. --> 
+        {% block extra_script %}
+        {%  endblock %}
+    </body>
+</html>
