@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+}
+.bottomnav{
+    position: fixed;
+    bottom: 0;
+    height: 28px;
+    width: 100%;
+    color: white;
+    font-weight: 2px;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+}
+#menuimg{
+    position: absolute;
+    left: 120px;
+    width: 60px;
+    height: 50px;
+    background-image: url("../menu.png");
+    background-size: cover;
+    border: 0;
+    outline: 0;
+}
+.logo2{
+    padding-top: 2px;
+    position: absolute;
+    right: 85px;
+    bottom: -2px;
+}
+.leftment{
+    margin-left: 10px;
+    padding-top: 8px;
+}
+.rightment{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 10px;
+    bottom: 2px;
+}
+.container{
+    width: 1410px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+}
+.headbox{
+    border-bottom: 3px solid rgba(128, 128, 128, 0.329);
+    width: 100%;
+    height: 60px;
+}
+.top{
+    position: fixed;
+    width: 100%;
+    height: 110px;
+}
+.logo{
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.login{
+    position:absolute;
+    top: 15px;
+    right: 20px;
+}
+.middlebox{
+    width: 100%;
+    height: 50px;
+    border-bottom: 3px solid red;
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+}
+.mentbox{
+    width: 100%;
+    height: 100%;
+    margin-left: 200px;
+    margin-top: 8px;
+}
+.mainbox{
+    width: 1410px;
+    height: 937px;
+}
+.contentsbox{
+    display: flex;
+    flex-direction: row;
+    width: 1410px;
+    height: 637px;
+}
+.notebox{
+    width: 1410px;
+    height: 300px;
+}
