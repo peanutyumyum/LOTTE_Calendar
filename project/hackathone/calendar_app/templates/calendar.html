@@ -3,8 +3,9 @@
 <html>
 <head>
 <meta charset='utf-8' />
-<link href="../static/lib/main.css" rel='stylesheet' />
-<script src="../static/lib/main.js"></script>
+<link href="{% static 'lib/main.css' %}" rel='stylesheet' />
+<script src="{% static 'lib/main.js' %}"></script>
+<script src="{% static 'lib/locale/ko.js' %}"></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -21,7 +22,7 @@
       businessHours: true, // display business hours
       editable: true,
       selectable: true,
-
+      locale: 'ko',
       events: [
         {% for i in events %}
             {
@@ -30,16 +31,8 @@
                 end: '{{ i.end|date:"Y-m-d" }}',
             },
         {% endfor %}
-        
       ]
-      views: {
-      timeGridFourDay: {
-      type: 'timeGrid',
-      duration: { days: 4 },
-      buttonText: '4 day'
-      }
     });
-
     calendar.render();
   });
 
