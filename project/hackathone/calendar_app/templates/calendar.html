@@ -29,6 +29,11 @@
                 title: "{{ i.title}}",
                 start: '{{ i.start|date:"Y-m-d" }}',
                 end: '{{ i.end|date:"Y-m-d" }}',
+                {% if i.groupId == 'on' %}
+                  color: '#f38181'
+                {% elif i.groupId == 'fresh' %}
+                  color: '#95e1d3'
+                {% endif %}
             },
         {% endfor %}
       ]
