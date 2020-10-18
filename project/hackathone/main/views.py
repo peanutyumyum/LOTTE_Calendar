@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def login(request):
+def home(request):
     context = {
-        
+
     }
-    return render(request, 'login.html', context)
+    return render(request, 'home.html', context)
