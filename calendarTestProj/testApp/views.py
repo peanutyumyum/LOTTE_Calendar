@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import CalendarEvent
 
 # Create your views here.
-def calendar(request):
+def home(request):
     events = CalendarEvent.objects.all()
     print(events)
-    return render(request,'calendar.html',{'events':events})
+    return render(request,'home.html',{'events':events})
