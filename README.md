@@ -6,7 +6,7 @@
 
 <img src="https://user-images.githubusercontent.com/63117632/95637803-9fc51980-0acd-11eb-936a-1bd932d51ba9.png">
 
-Flow Chart link Written by Adobe XD : https://xd.adobe.com/embed/3cb691c8-ba06-49db-9ff3-0986a315b299-69e5/
+Flow Chart link Written by Adobe XD : https://xd.adobe.com/view/3cb691c8-ba06-49db-9ff3-0986a315b299-69e5/
 
 ## Work Table
 

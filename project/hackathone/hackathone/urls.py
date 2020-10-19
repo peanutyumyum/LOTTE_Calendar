@@ -1,3 +1,4 @@
+
 """hackathone URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -12,6 +13,7 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+test.app 삭제함
 """
 from django.conf import settings
 from django.conf.urls.static import static
