@@ -22,6 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('calendar/', include('calendar_app.urls', namespace='calendar_app')),
-    path('login/', include('login.urls', namespace='login')),
-    path('test_app/', include('test_app.urls', namespace='test_app')),
+    path('login/', include('login.urls', namespace="login")),
 ]
