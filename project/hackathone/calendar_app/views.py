@@ -11,20 +11,27 @@ def calendar(request):
     long_space = space*10
 
     def detail_information_render(today_item):
-        arr = []
-        detail_events = CalendarEvent.objects.get(pk=today_item)
-        for i in detail_events:
-            arr.append(i)
-        return arr
+
+        detail_event = CalendarEvent.objects.get(pk=today_item)
+        return detail_event
+
+    detail_events = []
 
     for i in events:
-        today = str(datetime.datetime.now())
-        start_day = str(i.start)
-        end_day = str(i.end)
-        if today > start_day:
-            if today < end_day:
-                a = detail_information_render(i.id)
+        today_date = str(datetime.datetime.now())[0:10]
+        today_str = today_date.replace("-", "")
+        today = int(today_str)
 
-    return render(request, 'calendar.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': a})
+        start_day_date = str(i.start)[0:10]
+        start_day_str = start_day_date.replace("-", "")
+        start_day = int(start_day_str)
 
-    # 2020-10-05 07:14:32+00:00
+        end_day_date = str(i.end)[0:10]
+        end_day_str = end_day_date.replace("-", "")
+        end_day = int(end_day_str)
+
+        if today >= start_day:
+            if today <= end_day:
+                detail_events.append(detail_information_render(i.id))
+
+    return render(request, 'calendar.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': detail_events})
