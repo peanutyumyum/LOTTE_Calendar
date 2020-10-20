@@ -1,26 +1,15 @@
-body {
+body{
+  width: 1430px;
   margin: 0;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-a:focus {
-  text-decoration: none;
-}
-a:hover,
-a:active {
-  text-decoration: none;
-}
+a { text-decoration: none; color: black; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
 
-.bottomnav {
+.bottomnav{
   position: fixed;
   bottom: 0;
   height: 28px;
@@ -31,59 +20,60 @@ a:active {
   display: flex;
   flex-direction: row;
 }
-#menuimg {
+#menuimg{
   position: absolute;
   left: 160px;
   width: 60px;
   height: 50px;
-  background-image: url('../image/menu.png');
+  background-image: url("../menu.png");
   background-size: cover;
   border: 0;
   outline: 0;
 }
-.logo2 {
+.logo2{
   padding-top: 2px;
   position: absolute;
   right: 85px;
   bottom: -2px;
 }
-.leftment {
+.leftment{
   margin-left: 10px;
   padding-top: 8px;
 }
-.rightment {
+.rightment{
   display: flex;
   flex-direction: row;
   position: absolute;
   right: 10px;
   bottom: 2px;
 }
-.container {
+.container{
   width: 1430px;
   height: 820px;
   display: flex;
   flex-direction: column;
 }
-.headbox {
+.headbox{
+  position: relative;
   border-bottom: 3px solid rgba(128, 128, 128, 0.329);
   width: 100%;
   height: 60px;
 }
-.top {
+.top{
   width: 100%;
   height: 110px;
 }
-.logo {
+.logo{
   margin-top: 15px;
   margin-left: 10px;
 }
 
-.login {
+.login{
   position: absolute;
-  top: 15px;
-  right: 50px;
+  top: 2%;
+  right: 3%;
 }
-.middlebox {
+.middlebox{
   width: 100%;
   height: 50px;
   border-bottom: 3px solid red;
@@ -91,54 +81,55 @@ a:active {
   flex-direction: row;
   font-size: 2rem;
 }
-.mentbox {
+.mentbox{
   width: 100%;
   height: 100%;
   margin-left: 250px;
   margin-top: 8px;
 }
-.mainbox {
+.mainbox{
   width: 1410px;
   height: 937px;
 }
-.contentsbox {
+.contentsbox{
   display: flex;
   flex-direction: row;
   width: 1410px;
   height: 637px;
 }
-.notebox {
+.notebox{
+  position: relative;
   background-color: rgba(255, 195, 205, 0.781);
   margin-top: -100px;
   width: 1440px;
   height: 150px;
 }
-.addbox {
+.addbox{
   margin-left: 20px;
   margin-top: 40px;
 }
-.calendarbox {
+.calendarbox{
   width: 1150px;
   height: 500px;
   margin-top: 25px;
   margin-left: 33px;
   border: solid red;
 }
-.notepad {
+.notepad{
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
   position: absolute;
   left: 220px;
-  bottom: 35px;
+  bottom: 13px;
   width: 1200px;
   height: 130px;
   border-radius: 20px;
   background-color: rgb(255, 230, 230);
 }
-#character {
+#character{
   position: absolute;
   left: 43px;
-  bottom: 28px;
+  bottom: 3px;
 }

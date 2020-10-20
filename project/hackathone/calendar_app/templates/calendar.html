@@ -63,15 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <div id='calendar'></div>
   <div id='detail'>
-    {% for i in events %}
+    {% for i in detail_events %}
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
       {{i.title}}<br>
       {{long_space}}
       {{i.groupId}}<br>
       {{i.start}}{{long_space}}{{i.end}}
-    {% endfor %}
-    {% for i in detail_events %} 
-      {{i.title}}
     {% endfor %}
   </div>
 
