@@ -18,9 +18,9 @@ def calendar(request):
 
 
     for i in events:
-        today = datetime.datetime.now()
-        start_day = i.start
-        end_day = i.end
+        today = str(datetime.datetime.now())
+        start_day = str(i.start)
+        end_day = str(i.end)
         if today > start_day:
             if today < end_day:
                 a = detail_information_render(i.id)
