@@ -11,17 +11,14 @@ User = get_user_model()
 def signup(request):
     if request.method == 'POST':
         # 아이디 중복 체크
-        if User.objects.filter(username=request.POST['username']).exists():
-            messages.info(request, "이미 가입된 id입니다.")
+        if request.POST['password1'] == request.POST['password2']:
+            user = User.objects.create_user(
+                username=request.POST['username'], password=request.POST['password1'])
+            # 회원가입시 자동으로 로그인되지 않도록.
+            #auth.login(request, user)
+            return redirect('login:login')
         else:
-            if request.POST['password1'] == request.POST['password2']:
-                user = User.objects.create_user(
-                    username=request.POST['username'], password=request.POST['password1'])
-                # 회원가입시 자동으로 로그인되지 않도록.
-                #auth.login(request, user)
-                return redirect('login:login')
-            else:
-                return redirect('login:login')
+            return redirect('login:login')
     return render(request, 'signup.html')
 
 
