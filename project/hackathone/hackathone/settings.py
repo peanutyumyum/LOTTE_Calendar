@@ -20,11 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "-bb2=uypdn)$1hajaum06-p3c(ov(w=h8x(%wr5%e3kcp7zhd="
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "-bb2=uypdn)$1hajaum06-p3c(ov(w=h8x(%wr5%e3kcp7zhd="
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', False) )
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,7 +135,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-import dj_database_url
+""" import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env) """
