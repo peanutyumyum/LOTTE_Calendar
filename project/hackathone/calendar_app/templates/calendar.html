@@ -11,7 +11,7 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
+  var calendarEl = document.getElementById('calendarbox');
   var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 14px;
   }
 
-  #calendar {
+  #calendarbox {
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -61,17 +61,15 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 
-  <div id='calendar'></div>
+  <div id='calendarbox'></div>
   <div id='detail'>
-    {% for i in events %}
-      {% if %{today}; == i.start || i.end %}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
-        {{i.title}}<br>
-        {{long_space}}
-        {{i.groupId}}<br>
-        {{i.start}}{{long_space}}{{i.end}}
-      {% endif %}
-    {% endfor %} 
+    {% for i in detail_events %}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
+      {{i.title}}<br>
+      {{long_space}}
+      {{i.groupId}}<br>
+      {{i.start}}{{long_space}}{{i.end}}
+    {% endfor %}
   </div>
 
 </body>
