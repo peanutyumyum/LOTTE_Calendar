@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'calendar_app',
     'login',
+    'mypage',
 ]
 
 MIDDLEWARE = [
