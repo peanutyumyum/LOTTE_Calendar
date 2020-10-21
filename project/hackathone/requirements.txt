@@ -6,4 +6,3 @@ psycopg2-binary==2.8.6
 pytz==2020.1
 sqlparse==0.4.1
 whitenoise==5.2.0
-python-3.8.5
