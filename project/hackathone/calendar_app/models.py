@@ -4,8 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CalendarEvent(models.Model):
-    author = models.ForeignKey(get_user_model(
-    ), on_delete=models.SET_NULL, null=True, blank=True, related_name="schedules")
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True, related_name="schedules")
     title = models.CharField(_('Title'), max_length=200)
     start = models.DateTimeField(_('Start'))
     end = models.DateTimeField(_('End'))

@@ -1,0 +1,20 @@
+<h1>회원가입 페이지</h1>
+
+<form method="POST" action="{% url 'login:signup' %}">
+    {% csrf_token %}
+    <div class="part" style="font-size: 20px; padding: 40px;">
+        <span>Username:</span>
+        <input name="username" type="username" class="form-control" id="exampleInputEmail1">
+
+    </div>
+    <div class="part" style="font-size: 20px; padding: 40px;">
+        <span>Password:</span>
+        <input name="password1" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="part" style="font-size: 20px; padding: 40px;">
+        <span>Check your Password:</span>
+        <input name="password2" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <input type="submit" value="회원가입">
+</form>
