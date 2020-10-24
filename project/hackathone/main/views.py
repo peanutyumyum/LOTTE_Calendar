@@ -1,6 +1,21 @@
+# import user data
+
+from django.contrib import auth
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User # user data
+
+
+# custom import
+
 from django.shortcuts import render
 from .models import CalendarEvent
+
+
+# usage for time filter function
+
 import datetime
+
+
 
 # Create your views here.
 
@@ -41,7 +56,9 @@ def home(request):
     return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': detail_events})
   
 def first(request):
-  context = {
+    
+    context = {
 
-  }
-  return render(request, 'first.html', context)
+    }
+    return render(request, 'first.html', context)
+

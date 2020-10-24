@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type="text/css" href="../static/css/home.css" >
-    <link href="../static/lib/main.css" rel='stylesheet' />
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/home.css' %}" >
+    <link href="{% static 'lib/main.css' %}" rel='stylesheet' />
     <title>Main</title>
 </head>
 <style>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="login">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% else %}
                     <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% endif %}
@@ -56,25 +56,28 @@
 
                     <a href="https://www.lotteon.com"><img src="{% static 'MAINADD.png' %}" width="95%" height="85%"></a>
                 </div>
-                <div id="calendarbox">
-                    <div id="detail">
-                        {% for i in events %}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
-                            {{i.title}}<br>
-                            {{long_space}}
-                            {{i.groupId}}<br>
-                            {{i.start}}{{long_space}}{{i.end}}
-                        {% endfor %}
-                        {% for i in detail_events %} 
-                        {{i.title}}
-                        {% endfor %}
-                    </div>
-                </div>
+                <div id="calendarbox"></div>
             </div>
             <div class="notebox" >
                 <img id="character" src="{% static 'LOTTEONCHARACTER.png' %}" width="13%" height="88%">
                 <div class="notepad">
-                    <span> 로그인을 하시면 확인할 수 있습니다 ! </span>
+                    <span>
+                        {% if user.is_authenticated %}
+                            로그인 되었네요
+                            {% for i in events %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
+                                {{i.title}}<br>
+                                {{long_space}}
+                                {{i.groupId}}<br>
+                                {{i.start}}{{long_space}}{{i.end}}
+                            {% endfor %}
+                            {% for i in detail_events %} 
+                                {{i.title}}
+                            {% endfor %}
+                        {% else %}
+                            로그인을 해서 나의 일정을 확인하세요!
+                        {% endif %}
+                    </span>
                 </div>
             </div>
         </div>
@@ -91,14 +94,12 @@
                     <img src="{% static 'facebook.png' %}" width="150%" height="150%"></a> &nbsp&nbsp    
             </div>   
         </div>
-           
-
     </div>
 
 </body>
 </html>
-<script src="../static/lib/main.js""></script>
-<script src="../static/lib/locales/ko.js"></script> <!-- for fullcalendar koreanlization -->
+<script src="{% static 'lib/main.js' %}"></script>
+<script src="{% static 'lib/locales/ko.js' %}"></script> <!-- for fullcalendar koreanlization -->
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -116,25 +117,20 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       locale: 'ko',
       events: [
+        {% if user.is_authenticated %}
+            {% for i in events %}
 
-        {% for i in events %}
+                    {
+                        title: "{{ i.title}}",
+                        start: '{{ i.start|date:"Y-m-d" }}',
+                        end: '{{ i.end|date:"Y-m-d" }}',
+                    },
 
-                {
-                    title: "{{ i.title}}",
-                    start: '{{ i.start|date:"Y-m-d" }}',
-                    end: '{{ i.end|date:"Y-m-d" }}',
-                },
-
-        {% endfor %}
-                
+            {% endfor %}
+        {% endif %}
       ]
             
     });
     calendar.render();
   });
 </script>
-
-
-<!— time logic —>
-<script src="../static/lib/js/time.js"></script>
-    <title>Main</title>
