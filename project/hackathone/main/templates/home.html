@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type="text/css" href='../static/css/home.css' >
-    <link href='../static/lib/main.css' rel='stylesheet' />
+    <link rel = "stylesheet" type="text/css" href="../static/css/home.css" >
+    <link href="../static/lib/main.css" rel='stylesheet' />
     <title>Main</title>
 </head>
 <style>
@@ -60,10 +60,10 @@
                     <div id="detail">
                         {% for i in events %}
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
-                        {{i.title}}<br>
-                        {{long_space}}
-                        {{i.groupId}}<br>
-                        {{i.start}}{{long_space}}{{i.end}}
+                            {{i.title}}<br>
+                            {{long_space}}
+                            {{i.groupId}}<br>
+                            {{i.start}}{{long_space}}{{i.end}}
                         {% endfor %}
                         {% for i in detail_events %} 
                         {{i.title}}
@@ -117,22 +117,25 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       locale: 'ko',
       events: [
+
         {% for i in events %}
-            {% if "{{user}}" == "{{i.Author}}" %}
+
                 {
                     title: "{{ i.title}}",
                     start: '{{ i.start|date:"Y-m-d" }}',
                     end: '{{ i.end|date:"Y-m-d" }}',
                 },
-            {% endif %}
+
         {% endfor %}
+                
       ]
+            
     });
     calendar.render();
   });
 </script>
 
 
-<!-- time logic -->
+<!— time logic —>
 <script src="../static/lib/js/time.js"></script>
     <title>Main</title>
