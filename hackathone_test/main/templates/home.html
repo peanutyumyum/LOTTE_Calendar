@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="../static/css/home.css" >
+    <link href="../static/lib/main.css" rel='stylesheet' />
+    <title>Main</title>
+</head>
+<style>
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+  
+    #calendar {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  
+  </style>
+<body>
+
+    <div class="container">
+        
+        <div class="top">
+            <div class="headbox">
+                <div class="logo">
+                    <a class="logo1" href="https://www.lotteon.com" target="blank"><img src="../static/글자로고.png" width="350px" height="60px"></a>
+                </div>
+                <div class="login">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    {% else %}
+                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="middlebox">
+                <button id="menuimg"></button>
+                <nav class="mentbox">
+                    <a href=""><img src="../static/이달의 구독.png" width="90px" height="30px"></a> &nbsp 
+                    <a href="https://www.lotteon.com"><img src="../static/롯데ON몰.png" width="85px" height="30px"></a> &nbsp 
+                    <a href="http://www.lottesuper.co.kr/handler/Index-Start"><img src="../static/롯데Fresh.png" width="85px" height="30px"></a>
+                </nav>  
+            </div>
+        </div>
+
+        <div class="mainbox">
+            <div class="contentsbox">
+                <div class="addbox">
+                    <a href="https://www.lotteon.com"><img src="../static/롯캘이 메인 광고.png" width="200px" height="470px"></a>
+                </div>
+                <div id="calendarbox">
+                    <div id="detail">
+                        {% for i in events %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
+                            {{i.title}}<br>
+                            {{long_space}}
+                            {{i.groupId}}<br>
+                            {{i.start}}{{long_space}}{{i.end}}
+                        {% endfor %}
+                        {% for i in detail_events %} 
+                        {{i.title}}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="notebox" >
+                <img id="character" src="../static/롯데 on 캐릭터.png" width="150px" height="140px">
+                <div class="notepad">
+                    <span> 로그인을 하시면 확인할 수 있습니다 ! </span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="bottomnav">
+            <div class="leftment">
+                <a href="https://www.lotteon.com" target="blank"> <img src="../static/LOTTE Calendar.png" width="140px" height="15px"> </a>
+            </div>
+            <div class="rightment">
+                <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="../static/instagram.png" width="25px" height="15px"></a> &nbsp&nbsp&nbsp&nbsp
+                <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" >
+                    <img src="../static/facebook.png" width="13px" height="15px"></a> &nbsp&nbsp
+            </div>
+            <div class="logo2" ><a href=""> <img src="../static/calendarimoji.png" width="30px" height="25px"></a></div>
+                        
+            
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script src="../static/lib/main.js""></script>
+<script src="../static/lib/locales/ko.js"></script> <!-- for fullcalendar koreanlization -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendarbox');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2020-10-16',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      locale: 'ko',
+      events: [
+
+        {% for i in events %}
+
+                {
+                    title: "{{ i.title}}",
+                    start: '{{ i.start|date:"Y-m-d" }}',
+                    end: '{{ i.end|date:"Y-m-d" }}',
+                },
+
+        {% endfor %}
+                
+      ]
+            
+    });
+    calendar.render();
+  });
+</script>
+
+
+<!-- time logic -->
+<script src="../static/lib/js/time.js"></script>
+    <title>Main</title>
