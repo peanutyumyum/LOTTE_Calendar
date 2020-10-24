@@ -16,7 +16,6 @@ from .models import CalendarEvent
 import datetime
 
 
-
 # Create your views here.
 
 

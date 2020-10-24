@@ -25,4 +25,8 @@ urlpatterns = [
     path('', include('main.urls', namespace='main')),
     path('login/', include('login.urls', namespace='login')),
     path('mypage/', include('mypage.urls', namespace='mypage')),
-]
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

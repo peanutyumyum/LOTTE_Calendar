@@ -37,7 +37,7 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% else %}
-                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% endif %}
                 </div>
             </div>

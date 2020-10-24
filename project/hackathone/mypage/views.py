@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def home(request):
+def mypage(request):
     context = {
     }
     return render(request, 'mypage.html', context)
