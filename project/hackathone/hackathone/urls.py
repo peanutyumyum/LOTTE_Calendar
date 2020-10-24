@@ -24,4 +24,9 @@ urlpatterns = [
     path('calendar/', include('calendar_app.urls', namespace='calendar_app')),
     path('login/', include('login.urls', namespace='login')),
     path('mypage/', include('mypage.urls', namespace='mypage')),
+    path('delivery/', include('mypage.urls', namespace='delivery')),
+    path('notice/', include('mypage.urls', namespace='notice')),
+    path('event/', include('mypage.urls', namespace='event')),
+    path('basket/', include('mypage.urls', namespace='basket')),
+
 ]
