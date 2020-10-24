@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'login',
     'test_app',
+    'mypage',
 ]
 
 MIDDLEWARE = [

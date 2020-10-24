@@ -23,12 +23,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('calendar/', include('calendar_app.urls', namespace='calendar_app')),
     path('login/', include('login.urls', namespace='login')),
     path('mypage/', include('mypage.urls', namespace='mypage')),
-    path('delivery/', include('mypage.urls', namespace='delivery')),
-    path('notice/', include('mypage.urls', namespace='notice')),
-    path('event/', include('mypage.urls', namespace='event')),
-    path('basket/', include('mypage.urls', namespace='basket')),
-    path('first/', include('main.urls', namespace='first')),
 ]
