@@ -7,3 +7,10 @@ def home(request):
 
     }
     return render(request, 'home.html', context)
+
+
+def first(request):
+    context = {
+
+    }
+    return render(request, 'first.html', context)

@@ -28,5 +28,6 @@ urlpatterns = [
     path('notice/', include('mypage.urls', namespace='notice')),
     path('event/', include('mypage.urls', namespace='event')),
     path('basket/', include('mypage.urls', namespace='basket')),
+    path('first/', include('main.urls', namespace='first')),
 
 ]
