@@ -5,20 +5,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel = "stylesheet" type="text/css" href="../static/css/home.css" >
+    <link href="../static/lib/main.css" rel='stylesheet' />
     <title>Main</title>
 </head>
+<style>
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+  
+    #calendar {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  
+  </style>
 <body>
 
     <div class="container">
-
+        
         <div class="top">
             <div class="headbox">
                 <div class="logo">
                     <a class="logo1" href="https://www.lotteon.com" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
                 </div>
                 <div class="login">
-                    <a href="">로그인</a> &nbsp <a href="">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    {% else %}
+                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="middlebox">
@@ -30,14 +50,25 @@
                 </nav>  
             </div>
         </div>
-
         <div class="mainbox">
             <div class="contentsbox">
                 <div class="addbox">
+
                     <a href="https://www.lotteon.com"><img src="{% static 'MAINADD.png' %}" width="95%" height="85%"></a>
                 </div>
-                <div id="calendarbox" > 
-                    캘린더 코드 들어갈 자리
+                <div id="calendarbox">
+                    <div id="detail">
+                        {% for i in events %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
+                            {{i.title}}<br>
+                            {{long_space}}
+                            {{i.groupId}}<br>
+                            {{i.start}}{{long_space}}{{i.end}}
+                        {% endfor %}
+                        {% for i in detail_events %} 
+                        {{i.title}}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="notebox" >
@@ -66,3 +97,44 @@
 
 </body>
 </html>
+<script src="../static/lib/main.js""></script>
+<script src="../static/lib/locales/ko.js"></script> <!-- for fullcalendar koreanlization -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendarbox');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2020-10-16',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      locale: 'ko',
+      events: [
+
+        {% for i in events %}
+
+                {
+                    title: "{{ i.title}}",
+                    start: '{{ i.start|date:"Y-m-d" }}',
+                    end: '{{ i.end|date:"Y-m-d" }}',
+                },
+
+        {% endfor %}
+                
+      ]
+            
+    });
+    calendar.render();
+  });
+</script>
+
+
+<!— time logic —>
+<script src="../static/lib/js/time.js"></script>
+    <title>Main</title>

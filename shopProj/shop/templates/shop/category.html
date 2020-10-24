@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }} - Category
+    {% else %}
+        Welcom to the cushion store where you can buy comfy and awesome cushion.
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} - Perfect Cushion Store
+    {% else %}
+        See Our Cushion Collection - Perfect Cushion Store
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div>
+            <div>
+                <p><a href="{% url 'shop:allProdCat' %}">Our Product Collection</a> | {{category.name}}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    <div>
+    {% if category %}
+        <div>
+            <img src="{{category.image.url}}" alt="{{category.name}}" >
+        </div>
+        <br>
+        <div>
+            {{category.name}}
+            {{category.description}}
+        </div>
+    {% else %}
+        <div>
+            <h1>Our Lotte Collection</h1>
+            <p>롯데 프레시 와 롯데 온 블라블라 설명</p>
+        </div>
+    {% endif %}
+    <div>
+        <div>
+            {% for product in products.object_list %}
+            <div>
+                <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}" width="100px" height="100px"></a>
+                <div>
+                    <h4>{{product.name}}</h4>
+                    <p>${{product.price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            {% if products.paginator.num_pages > 1 %}
+                <br>
+                <div>
+                    {% for pg in products.paginator.page_range %}
+                        <a href="?page={{pg}}">{{pg}}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
