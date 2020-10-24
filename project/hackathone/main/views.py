@@ -39,3 +39,9 @@ def home(request):
     print(events)
 
     return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': detail_events})
+  
+def first(request):
+  context = {
+
+  }
+  return render(request, 'first.html', context)
