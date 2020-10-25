@@ -18,7 +18,7 @@ def order(request):
             num = int(request.POST['month'])*30
             date_req = request.POST['startdate']
             date_array = date_req.split('-')
-            start_time = datetime(int(date_array[0]), int(date_array[1]), int(date_array[2]), 0, 0, 0)
+            start_time = datetime(int(date_array[0]), int(date_array[1]), int(date_array[2]), 12, 12, 12)
             for i in range(2):
                 if i > 0 :
                     date_real = start_time + timedelta(days=num)
@@ -37,7 +37,7 @@ def order(request):
             week = int(request.POST['week'])
             date_req = request.POST['startdate']
             date_array = date_req.split('-')
-            start_time = datetime(int(date_array[0]), int(date_array[1]), int(date_array[2]), 0, 0, 0)
+            start_time = datetime(int(date_array[0]), int(date_array[1]), int(date_array[2]), 12, 12, 12)
             for i in range(month//week):
                 if i > 0 :
                     date_real = start_time + timedelta(days=i*week*7)

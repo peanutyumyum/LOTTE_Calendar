@@ -19,37 +19,7 @@ import datetime
 # Create your views here.
 
 
-def home(request):
-    events = CalendarEvent.objects.all()
-    space = "&nbsp;"
-    long_space = space*10
-    def detail_information_render(today_item):
-
-        detail_event = CalendarEvent.objects.get(pk=today_item)
-        return detail_event
-
-    detail_events = []
-    for i in events:
-            user = request.user
-            if i.author == request.user:
-                today_date = str(datetime.datetime.now())[0:9]
-                today_str = today_date.replace("-", "")
-                today = int(today_str)
-
-                start_day_date = str(i.start)[0:9]
-                start_day_str = start_day_date.replace("-", "")
-                start_day = int(start_day_str)
-
-                end_day_date = str(i.end)[0:9]
-                end_day_str = end_day_date.replace("-", "")
-                end_day = int(end_day_str)
-
-                if today >= start_day and today<=end_day:
-                    detail_events.append(i.title)
-                
-            length = len(detail_events)
-    return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': detail_events, 'length':length})
-  
+# introducing page when you first open
 def first(request):
     
     context = {
@@ -57,3 +27,61 @@ def first(request):
     }
     return render(request, 'first.html', context)
 
+
+# main home page
+def home(request):
+    # define calendar QuerySet
+    events = CalendarEvent.objects.all()
+
+
+    # useful items at html content
+    space = "&nbsp;"
+    long_space = space*10
+
+
+    # filtering today's events
+    detail_events_on = []
+    detail_events_fresh = []
+    for i in events:
+        if i.author == request.user:
+            # todat settings
+            today_date = str(datetime.datetime.now())[0:10]
+            today_str = today_date.replace("-", "")
+            today = int(today_str)
+
+            # start day settings
+            start_day_date = str(i.start)[0:10]
+            start_day_str = start_day_date.replace("-", "")
+            start_day = int(start_day_str)
+
+            # end day settings
+            end_day_date = str(i.end)[0:10]
+            end_day_str = end_day_date.replace("-", "")
+            end_day = int(end_day_str)
+
+            # filtering
+            if today >= start_day:
+                if today <= end_day:
+                    if i.groupId == "lotteon":
+                        detail_events_on.append(str(i.title))
+                    elif i.groupId == "lottefresh":
+                        detail_events_fresh.append(str(i.title))
+
+
+        # to use distinguish Boolean(having a todat's service data)
+        length_on = len(detail_events_on)
+        length_fresh = len(detail_events_fresh)
+        message_on = ""
+        message_fresh = ""
+        for i in range(length_on):
+            if i==0:
+                message_on += str(detail_events_on[i])
+            elif i>0:
+                message_on += str(","+detail_events_on[i])
+        for i in range(length_fresh):
+            if i==0:
+                message_fresh += str(detail_events_fresh[i])
+            elif i>0:
+                message_fresh += str(","+detail_events_fresh[i])
+
+    return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'message_on':message_on, 'message_fresh':message_fresh, 'length_on':length_on, 'length_fresh':length_fresh})
