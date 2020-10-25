@@ -23,6 +23,13 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('calendar/', include('calendar_app.urls', namespace='calendar_app')),
-    path('login/', include('login.urls', namespace="login")),
-]
+    path('login/', include('login.urls', namespace='login')),
+    path('mypage/', include('mypage.urls', namespace='mypage')),
+    path('shop/', include('shop.urls')),
+    path('cart/',include('cart.urls')),
+    path('order/',include('order.urls')),
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

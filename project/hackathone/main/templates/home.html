@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type="text/css" href='../static/css/home.css' >
-    <link href='../static/lib/main.css' rel='stylesheet' />
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/home.css' %}" >
+    <link href="{% static 'lib/main.css' %}" rel='stylesheet' />
     <title>Main</title>
 </head>
 <style>
@@ -31,50 +31,52 @@
         <div class="top">
             <div class="headbox">
                 <div class="logo">
-                    <a class="logo1" href="https://www.lotteon.com" target="blank"><img src="../static/글자로고.png" width="350px" height="60px"></a>
+                    <a class="logo1" href="{% url 'main:home' %}" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
                 </div>
                 <div class="login">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% else %}
-                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="">마이페이지</a> &nbsp <a href="">고객센터</a>
+                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a> &nbsp <a href="">고객센터</a>
                     {% endif %}
                 </div>
             </div>
             <div class="middlebox">
                 <button id="menuimg"></button>
                 <nav class="mentbox">
-                    <a href=""><img src="../static/이달의 구독.png" width="90px" height="30px"></a> &nbsp 
-                    <a href="https://www.lotteon.com"><img src="../static/롯데ON몰.png" width="85px" height="30px"></a> &nbsp 
-                    <a href="http://www.lottesuper.co.kr/handler/Index-Start"><img src="../static/롯데Fresh.png" width="85px" height="30px"></a>
+                    <a href=""><img src="{% static 'this month.png' %}" width="9%" height="82%"></a> &nbsp 
+                    <a href="{% url 'shop:products_by_category' 'lotteon' %}"><img src="{% static 'LOTTEONMALL.png' %}" width="8%" height="82%"></a> &nbsp 
+                    <a href="{% url 'shop:products_by_category' 'lottefresh' %}"><img src="{% static 'LOTTEFresh.png' %}" width="9%" height="82%"></a>
                 </nav>  
             </div>
         </div>
-
         <div class="mainbox">
             <div class="contentsbox">
                 <div class="addbox">
-                    <a href="https://www.lotteon.com"><img src="../static/롯캘이 메인 광고.png" width="200px" height="470px"></a>
+                    <a href="https://www.lotteon.com"><img src="{% static 'MAINADD.png' %}" width="95%" height="85%"></a>
                 </div>
-                <div id="calendarbox">
-                    <div id="detail">
-                        {% for i in events %}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
-                        {{i.title}}<br>
-                        {{long_space}}
-                        {{i.groupId}}<br>
-                        {{i.start}}{{long_space}}{{i.end}}
-                        {% endfor %}
-                        {% for i in detail_events %} 
-                        {{i.title}}
-                        {% endfor %}
-                    </div>
-                </div>
+                <div id="calendarbox"></div>
             </div>
             <div class="notebox" >
-                <img id="character" src="../static/롯데 on 캐릭터.png" width="150px" height="140px">
+                <img id="character" src="{% static 'LOTTEONCHARACTER.png' %}" width="13%" height="88%">
                 <div class="notepad">
-                    <span> 로그인을 하시면 확인할 수 있습니다 ! </span>
+                    <span>
+                        {% if user.is_authenticated %}
+                            로그인 되었네요
+                            {% for i in events %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- &nbsp; 는 띄어쓰기에 사용합니다! -->
+                                {{i.title}}<br>
+                                {{long_space}}
+                                {{i.groupId}}<br>
+                                {{i.start}}{{long_space}}{{i.end}}
+                            {% endfor %}
+                            {% for i in detail_events %} 
+                                {{i.title}}
+                            {% endfor %}
+                        {% else %}
+                            로그인을 해서 나의 일정을 확인하세요!
+                        {% endif %}
+                    </span>
                 </div>
             </div>
         </div>
@@ -82,24 +84,21 @@
         
         <div class="bottomnav">
             <div class="leftment">
-                <a href="https://www.lotteon.com" target="blank"> <img src="../static/LOTTE Calendar.png" width="140px" height="15px"> </a>
+                <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
             </div>
             <div class="rightment">
-                <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="../static/instagram.png" width="25px" height="15px"></a> &nbsp&nbsp&nbsp&nbsp
+                <a href=" "><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 
+                <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="{% static 'instagram.png' %}" width="100%" height="100%"></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
                 <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" >
-                    <img src="../static/facebook.png" width="13px" height="15px"></a> &nbsp&nbsp
-            </div>
-            <div class="logo2" ><a href=""> <img src="../static/calendarimoji.png" width="30px" height="25px"></a></div>
-                        
-            
+                    <img src="{% static 'facebook.png' %}" width="150%" height="150%"></a> &nbsp&nbsp    
+            </div>   
         </div>
-
     </div>
 
 </body>
 </html>
-<script src="../static/lib/main.js""></script>
-<script src="../static/lib/locales/ko.js"></script> <!-- for fullcalendar koreanlization -->
+<script src="{% static 'lib/main.js' %}"></script>
+<script src="{% static 'lib/locales/ko.js' %}"></script> <!-- for fullcalendar koreanlization -->
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -117,22 +116,20 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       locale: 'ko',
       events: [
-        {% for i in events %}
-            {% if "{{user}}" == "{{i.Author}}" %}
-                {
-                    title: "{{ i.title}}",
-                    start: '{{ i.start|date:"Y-m-d" }}',
-                    end: '{{ i.end|date:"Y-m-d" }}',
-                },
-            {% endif %}
-        {% endfor %}
+        {% if user.is_authenticated %}
+            {% for i in events %}
+
+                    {
+                        title: "{{ i.title}}",
+                        start: '{{ i.start|date:"Y-m-d" }}',
+                        end: '{{ i.end|date:"Y-m-d" }}',
+                    },
+
+            {% endfor %}
+        {% endif %}
       ]
+            
     });
     calendar.render();
   });
 </script>
-
-
-<!-- time logic -->
-<script src="../static/lib/js/time.js"></script>
-    <title>Main</title>

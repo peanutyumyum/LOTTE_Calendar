@@ -16,9 +16,9 @@ def signup(request):
                 username=request.POST['username'], password=request.POST['password1'])
             # 회원가입시 자동으로 로그인되지 않도록.
             #auth.login(request, user)
-            return redirect('login:login')
+            return redirect('main:home')
         else:
-            return redirect('login:login')
+            return redirect('signup:home')
     return render(request, 'signup.html')
 
 
