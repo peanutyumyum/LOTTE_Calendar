@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/order.css' %}">
+    <title>Delivery</title>
+</head>
+<body>
+    {% if product.category.slug == "lotteon" %}
+    <div class="container">
+        <span id="title"> 정기 구독 신청 </span>
+        <div class="contents">
+            <div class="information">
+                <span id="product">선택상품</span>
+                <div class="productimg">
+                    <img src="{{product.image.url}}" alt="{{product.name}}" width="100%" height="100%">
+                </div>
+                <span class="productname">{{product.name}}</span>
+                <span class="price">{{product.price}} 원</span>
+            </div>
+            <div class="selectzone">
+                <form action="{% url 'order:order' %}" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                        <input class="submit" type="submit" value="신청하기">
+                        <div class="finishdate">
+                            <h2>구독 시작 날짜</h2>
+                            <span><label><input type="date" name="startdate" id="now_date" required></label></span>
+                        </div>
+                        <div class="selectoption1">
+                            <h2>구독 기간</h2>
+                            <h5>1개월 - 30일 기준</h5>
+                            <label><input type="radio" name="month" value="3" required>3개월</label>
+                            <label><input type="radio" name="month" value="6">6개월</label>
+                            <label><input type="radio" name="month" value="12">12개월</label>
+                            <label><input type="radio" name="month" value="24">24개월</label>
+                        </div>
+                    <input type="hidden" name="product_name" value="{{product.name}}">
+                    <input type="hidden" name="product_category" value="{{product.category.slug}}" >
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if product.category.slug == "lottefresh" %}
+    <div class="container">
+        <span id="title"> 정기 배송 신청 </span>
+        <div class="contents">
+            <div class="information">
+                <span id="product">선택상품</span>
+                <div class="productimg">
+                    <img src="{{product.image.url}}" alt="{{product.name}}" width="100%" height="100%">
+                </div>
+                <span class="productname">{{product.name}}</span>
+                <span class="price">{{product.price}} 원</span>
+            </div>
+            <div class="selectzone">
+                <form action="{% url 'order:order' %}" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                        <input class="submit" type="submit" value="신청하기">
+                        <div class="finishdate">
+                            <h2>배송 시작 날짜</h2>
+                            <span><label><input type="date" name="startdate" id="now_date" required></label></span>
+                        </div>
+                        <div class="selectoption1">
+                            <h2>배송 기간</h2>
+                            <label><input type="radio" name="month" value="4" required>1개월</label>
+                            <label><input type="radio" name="month" value="8">2개월</label>
+                            <label><input type="radio" name="month" value="12">3개월</label>
+                            <label><input type="radio" name="month" value="16">4개월</label>
+                        </div>
+                        <div class="selectoption2">
+                            <h2> 정기 배송 주기 </h2> 
+                            <label><input type="radio" name="week" value="1" required>1주</label>
+                            <label><input type="radio" name="week" value="2">2주</label>
+                            <label><input type="radio" name="week" value="3">3주</label>
+                            <label><input type="radio" name="week" value="4">4주</label>
+                        </div>
+                    <input type="hidden" name="product_name" value="{{product.name}}">
+                    <input type="hidden" name="product_category" value="{{product.category.slug}}" >
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="bottomnav">
+        <div class="leftment">
+            <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
+        </div>
+        <div class="rightment">
+            <a href="{% url 'cart:cart_detail' %}"><img src="{% static '장바구니.png' %}" width="50%" height="50%"></a> 
+            <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="{% static 'instagram.png' %}" width="100%" height="100%"  ></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+            <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" >
+                <img src="{% static 'facebook.png' %}" width="150%" height="150%"></a> &nbsp&nbsp    
+        </div>   
+    </div>
+    <script>
+        document.getElementById('now_date').valueAsDate = new Date();
+    </script>
+</body>
+</html>
