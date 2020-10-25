@@ -30,7 +30,7 @@
         <div class="top">
             <div class="headbox">
                 <div class="logo">
-                    <a class="logo1" href="{% url 'main:home' %}" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
+                    <a class="logo1" href="{% url 'main:home' %}" ><img src="{% static 'textlogo.png' %}" width="20%" ></a>
                 </div>
                 <div class="login">
                     {% if user.is_authenticated %}
@@ -57,7 +57,7 @@
             </div>
             <div class="notebox" >
                 <img id="character" src="{% static 'LOTTEONCHARACTER.png' %}" width="13%" height="88%">
-                <div class="notepad">
+                <div class="notepad" style="font-size: 32px;" >
                     <span>
                         {% if user.is_authenticated %}
                         {% if length_fresh == 0 %}
@@ -82,7 +82,7 @@
         
         <div class="bottomnav">
             <div class="leftment">
-                <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
+                <a href="{% url 'main:home' %}" > <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
             </div>
             <div class="rightment">
                 <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 
