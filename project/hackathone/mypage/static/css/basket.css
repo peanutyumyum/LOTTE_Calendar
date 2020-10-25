@@ -52,6 +52,8 @@ html, body {
     outline: 0;
 }
 .contents{
+    text-align: center;
+    align-items: center;
     border-radius: 9%;
     position: absolute;
     top: 15%;
@@ -59,6 +61,31 @@ html, body {
     width: 75%;
     height: 70%;
     background-color:white;
+    vertical-align: middle;
+    position:absolute;
+    left:0; 
+    bottom:0;
+    right:0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cart_items{
+    padding: 10%;
+    border: 10%;
+    text-align: center;
+    align-items: center;
+    top:50%; 
+    left:50%;
+    position:absolute;
+    top:0; 
+    left:0; 
+    bottom:0; 
+    right:0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }
 .bottomnav{
     position: fixed;

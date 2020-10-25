@@ -62,10 +62,20 @@
                 <div class="notepad">
                     <span>
                         {% if user.is_authenticated %}
-                            오늘은 {{message}} 이 배송될 예정입니다!
+                        {% if length_on == 0 %}
+                            오늘의 배송일정이 없습니다.<br>
                         {% else %}
-                            로그인을 하여 나의 배송 일정을 확인하세요!
+                            오늘은 {{message_on}} 이(가) 배송될 예정입니다.<br>
                         {% endif %}
+
+                        {% if length_fresh == 0 %}
+                            오늘의 구독 만료 내용이 없습니다.<br>
+                        {% else %}
+                            오늘은 {{message_fresh}} 구독이 만료될 예정입니다.
+                        {% endif %}
+                    {% else %}
+                        로그인을 하여 나의 배송 일정을 확인하세요!
+                    {% endif %}
                     </span>
                 </div>
             </div>
@@ -115,10 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         end: "{{ i.end|date:"Y-m-d" }}",
                         
                         // classify groupId with color
-                        {% if i.groupId == "fresh" %} 
-                            color: "#ff0000"
-                        {% elif i.groupId == "on" %}
+                        {% if i.groupId == "lottefresh" %} 
                             color: "#17b978"
+                        {% elif i.groupId == "lotteon" %}
+                            color: "#ff0000"
                         {% endif %}
                     },
                 {% endif %}

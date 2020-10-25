@@ -119,7 +119,6 @@ a:hover, a:active { text-decoration: none; }
     height: 83%;
     margin-top: 1.5%;
     margin-left: 2%;
-    border: solid red;
 }
 .notepad{
     display: flex;

@@ -40,7 +40,8 @@ def home(request):
 
 
     # filtering today's events
-    detail_events = []
+    detail_events_on = []
+    detail_events_fresh = []
     for i in events:
         if i.author == request.user:
             # todat settings
@@ -61,17 +62,26 @@ def home(request):
             # filtering
             if today >= start_day:
                 if today <= end_day:
-                    detail_events.append(str(i.title))
+                    if i.groupId == "lotteon":
+                        detail_events_on.append(str(i.title))
+                    elif i.groupId == "lottefresh":
+                        detail_events_fresh.append(str(i.title))
 
 
         # to use distinguish Boolean(having a todat's service data)
-        length = len(detail_events)
-        message = ""
-        for i in range(length):
+        length_on = len(detail_events_on)
+        length_fresh = len(detail_events_fresh)
+        message_on = ""
+        message_fresh = ""
+        for i in range(length_on):
             if i==0:
-                message += str(detail_events[i])
+                message_on += str(detail_events_on[i])
             elif i>0:
-                message += str(","+detail_events[i])
+                message_on += str(","+detail_events_on[i])
+        for i in range(length_fresh):
+            if i==0:
+                message_fresh += str(detail_events_fresh[i])
+            elif i>0:
+                message_fresh += str(","+detail_events_fresh[i])
 
-
-    return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'detail_events': detail_events, 'message':message})
+    return render(request, 'home.html', {'events': events, 'space': space, 'long_spcae': long_space, 'message_on':message_on, 'message_fresh':message_fresh, 'length_on':length_on, 'length_fresh':length_fresh})
