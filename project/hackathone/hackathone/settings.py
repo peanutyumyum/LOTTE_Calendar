@@ -24,7 +24,7 @@ SECRET_KEY = "-bb2=uypdn)$1hajaum06-p3c(ov(w=h8x(%wr5%e3kcp7zhd="
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = ['*']
 
@@ -150,7 +150,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static", "media")
 
 
-""" import dj_database_url
+import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env) """
+DATABASES['default'].update(db_from_env)
