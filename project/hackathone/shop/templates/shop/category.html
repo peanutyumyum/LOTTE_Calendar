@@ -58,14 +58,14 @@
                     {% for product in products.object_list %}
                         <div class="subscribesmain">
                             <div class="productimg">
-                                <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}" width="100%" height="100%"></a>
+                                <img src="{{product.image.url}}" alt="{{product.name}}" width="100%" height="100%">
                             </div>
                             <div class="productinfo">
                                 <h2> {{product.name}} </h2>
                                 <span> {{product.price}} 원 </span>
                             </div>
                             <div class="heart">
-                                <a href="#"><img id="heartlogo" src="{% static 'img/heart.png' %}" width="80%" height="35%"></a>
+                                <a href="{% url 'cart:add_cart' product.id %}"><img id="heartlogo" src="{% static 'img/heart.png' %}" width="80%" height="35%"></a>
                             </div>
                             <div class="button">
                                 {% if product.category.slug == "lotteon" %}

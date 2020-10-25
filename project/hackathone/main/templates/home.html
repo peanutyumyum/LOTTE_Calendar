@@ -27,7 +27,6 @@
 <body>
 
     <div class="container">
-        
         <div class="top">
             <div class="headbox">
                 <div class="logo">
@@ -44,7 +43,6 @@
             <div class="middlebox">
                 <button id="menuimg"></button>
                 <nav class="mentbox">
-                    <a href=""><img src="{% static 'this month.png' %}" width="9%" height="82%"></a> &nbsp 
                     <a href="{% url 'shop:products_by_category' 'lotteon' %}"><img src="{% static 'LOTTEONMALL.png' %}" width="8%" height="82%"></a> &nbsp 
                     <a href="{% url 'shop:products_by_category' 'lottefresh' %}"><img src="{% static 'LOTTEFresh.png' %}" width="9%" height="82%"></a>
                 </nav>  
@@ -60,34 +58,29 @@
             <div class="notebox" >
                 <img id="character" src="{% static 'LOTTEONCHARACTER.png' %}" width="13%" height="88%">
                 <div class="notepad">
-                    <span>
-                        {% if user.is_authenticated %}
-                        {% if length_on == 0 %}
-                            오늘의 배송일정이 없습니다.<br>
-                        {% else %}
-                            오늘은 {{message_on}} 이(가) 배송될 예정입니다.<br>
-                        {% endif %}
-
-                        {% if length_fresh == 0 %}
-                            오늘의 구독 만료 내용이 없습니다.<br>
-                        {% else %}
-                            오늘은 {{message_fresh}} 구독이 만료될 예정입니다.
-                        {% endif %}
+                    {% if user.is_authenticated %}
+                        {% for i in events %}
+                            {% if user == i.author %}
+                                {% if length == 0 %}
+                                    오늘의 배송 일정이 없습니다!
+                                {% else %}
+                                    오늘은 {{detail_events}}이 배송될 예정입니다!
+                                {% endif %}
+                            {% else %}
+                            {% endif %}
+                        {% endfor %}
                     {% else %}
-                        로그인을 하여 나의 배송 일정을 확인하세요!
+                         로그인을 하시면 확인할 수 있습니다 !
                     {% endif %}
-                    </span>
                 </div>
             </div>
         </div>
-
-        
         <div class="bottomnav">
             <div class="leftment">
                 <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
             </div>
             <div class="rightment">
-                <a href=" "><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 
+                <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 
                 <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="{% static 'instagram.png' %}" width="100%" height="100%"></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
                 <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" >
                     <img src="{% static 'facebook.png' %}" width="150%" height="150%"></a> &nbsp&nbsp    
@@ -116,25 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       locale: 'ko',
       events: [
-        {% if user.is_authenticated %}
-            {% for i in events %}
-                {% if i.author == user %} // filtering the user data
-                    {
-                        title: "{{ i.title}}",
-                        start: "{{ i.start|date:"Y-m-d" }}",
-                        end: "{{ i.end|date:"Y-m-d" }}",
-                        
-                        // classify groupId with color
-                        {% if i.groupId == "lottefresh" %} 
-                            color: "#17b978"
-                        {% elif i.groupId == "lotteon" %}
-                            color: "#ff0000"
-                        {% endif %}
-                    },
-                {% endif %}
-            {% endfor %}
-       {%endif%}
-       ]
+      {% for i in events %}
+            {% if i.author == user %}
+                {
+                    title: "{{ i.title}}",
+                    start: "{{ i.start|date:"Y-m-d" }}",
+                    end: "{{ i.end|date:"Y-m-d" }}",
+                    {% if i.groupId == "lottefresh" %}
+                        color: "#17b978"
+                    {% elif i.groupId == "lotteon" %}
+                        color: "#ff0000"
+                    {% endif %}
+                },
+
+            {% endif %}
+        {% endfor %}
+      ]
+            
     });
     calendar.render();
   });
