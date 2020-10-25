@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 class Cart(models.Model):
-    cart_id = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True, related_name="carts")
+    cart_id = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True, related_name="user_cart")
     date_added = models.DateField(auto_now_add=True)
     class Meta:
         db_table ='Cart'
