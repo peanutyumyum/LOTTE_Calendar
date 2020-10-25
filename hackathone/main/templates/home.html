@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/home.css' %}" >
+    <link href="{% static 'lib/main.css' %}" rel='stylesheet' />
+    <title>Main</title>
+</head>
+<style>
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+  
+    #calendar {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  
+  </style>
+<body>
+
+    <div class="container">
+        <div class="top">
+            <div class="headbox">
+                <div class="logo">
+                    <a class="logo1" href="{% url 'main:home' %}" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
+                </div>
+                <div class="login">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'login:logout' %}">로그아웃</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a>
+                    {% else %}
+                    <a href="{% url 'login:login' %}">로그인</a> &nbsp <a href="{% url 'login:signup' %}">회원가입</a> &nbsp <a href="{% url 'mypage:mypage' %}">마이페이지</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="middlebox">
+                <button id="menuimg"></button>
+                <nav class="mentbox">
+                    <a href="{% url 'shop:products_by_category' 'lotteon' %}"><img src="{% static 'LOTTEONMALL.png' %}" width="8%" height="82%"></a> &nbsp 
+                    <a href="{% url 'shop:products_by_category' 'lottefresh' %}"><img src="{% static 'LOTTEFresh.png' %}" width="9%" height="82%"></a>
+                </nav>  
+            </div>
+        </div>
+        <div class="mainbox">
+            <div class="contentsbox">
+                <div class="addbox">
+                    <a href="https://www.lotteon.com"><img src="{% static 'MAINADD.png' %}" width="95%" height="85%"></a>
+                </div>
+                <div id="calendarbox"></div>
+            </div>
+            <div class="notebox" >
+                <img id="character" src="{% static 'LOTTEONCHARACTER.png' %}" width="13%" height="88%">
+                <div class="notepad">
+                    <span>
+                        {% if user.is_authenticated %}
+                        {% if length_fresh == 0 %}
+                            오늘의 배송일정이 없습니다.<br>
+                        {% else %}
+                            오늘은 {{message_fresh}}  이(가) 배송될 예정입니다.<br>
+                        {% endif %}
+
+                        {% if length_on == 0 %}
+                            오늘의 구독 만료 내용이 없습니다.<br>
+                        {% else %}
+                            오늘은 {{message_on}} 구독이 만료될 예정입니다.
+                        {% endif %}
+                    {% else %}
+                        로그인을 하여 나의 배송 일정을 확인하세요!
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="bottomnav">
+            <div class="leftment">
+                <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
+            </div>
+            <div class="rightment">
+                <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 
+                <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="{% static 'instagram.png' %}" width="100%" height="100%"></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+                <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" >
+                    <img src="{% static 'facebook.png' %}" width="150%" height="150%"></a> &nbsp&nbsp    
+            </div>   
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="{% static 'lib/main.js' %}"></script>
+<script src="{% static 'lib/locales/ko.js' %}"></script> <!-- for fullcalendar koreanlization -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendarbox');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: '2020-10-16',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      locale: 'ko',
+      events: [
+        {% if user.is_authenticated %}
+            {% for i in events %}
+                {% if i.author == user %} // filtering the user data
+                    {
+                        title: "{{ i.title}}",
+                        start: "{{ i.start|date:"Y-m-d" }}",
+                        end: "{{ i.end|date:"Y-m-d" }}",
+                        
+                        // classify groupId with color
+                        {% if i.groupId == "lottefresh" %} 
+                            color: "#17b978"
+                        {% elif i.groupId == "lotteon" %}
+                            color: "#ff0000"
+                        {% endif %}
+                    },
+                {% endif %}
+            {% endfor %}
+       {%endif%}
+       ]
+    });
+    calendar.render();
+  });
+</script>
