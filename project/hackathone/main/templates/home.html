@@ -31,7 +31,7 @@
         <div class="top">
             <div class="headbox">
                 <div class="logo">
-                    <a class="logo1" href="https://www.lotteon.com" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
+                    <a class="logo1" href="{% url 'main:home' %}" target="blank"><img src="{% static 'textlogo.png' %}" width="20%" ></a>
                 </div>
                 <div class="login">
                     {% if user.is_authenticated %}
@@ -45,15 +45,14 @@
                 <button id="menuimg"></button>
                 <nav class="mentbox">
                     <a href=""><img src="{% static 'this month.png' %}" width="9%" height="82%"></a> &nbsp 
-                    <a href="https://www.lotteon.com"><img src="{% static 'LOTTEONMALL.png' %}" width="8%" height="82%"></a> &nbsp 
-                    <a href="http://www.lottesuper.co.kr/handler/Index-Start"><img src="{% static 'LOTTEFresh.png' %}" width="9%" height="82%"></a>
+                    <a href="{% url 'shop:products_by_category' 'lotteon' %}"><img src="{% static 'LOTTEONMALL.png' %}" width="8%" height="82%"></a> &nbsp 
+                    <a href="{% url 'shop:products_by_category' 'lottefresh' %}"><img src="{% static 'LOTTEFresh.png' %}" width="9%" height="82%"></a>
                 </nav>  
             </div>
         </div>
         <div class="mainbox">
             <div class="contentsbox">
                 <div class="addbox">
-
                     <a href="https://www.lotteon.com"><img src="{% static 'MAINADD.png' %}" width="95%" height="85%"></a>
                 </div>
                 <div id="calendarbox"></div>
@@ -75,7 +74,7 @@
         
         <div class="bottomnav">
             <div class="leftment">
-                <a href="https://www.lotteon.com" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
+                <a href="{% url 'main:home' %}" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
             </div>
             <div class="rightment">
                 <a href=" "><img src="{% static 'BASKET.png' %}" width="50%" height="50%"></a> 

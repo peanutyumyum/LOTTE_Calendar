@@ -18,6 +18,7 @@ import datetime
 
 # Create your views here.
 
+
 # introducing page when you first open
 def first(request):
     
