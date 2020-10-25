@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from shop.models import Product
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
+# from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import User
 # Create your views here.
+# User = get_user_model()
 
 def _cart_id(request):
-    cart = request.session.session_key
-    if not cart:
-        cart = request.session.create()
+    cart = None
+    if request.user.is_authenticated:
+           cart = request.user
     return cart
 
 def add_cart(request,product_id):

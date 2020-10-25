@@ -81,8 +81,8 @@ body {
 	top: 72%;
 	left: 14%;
 }
-
 .selectzone {
+	overflow: auto;
 	margin-top: 5%;
 	width: 50%;
 	height: 100%;
@@ -109,8 +109,11 @@ body {
 	font-size: 1.3rem;
 }
 .submit {
-	background-color: white;
-	margin-top: 3%;
-	width: 50%;
-	height: 5%;
+	background-color: rgb(253, 206, 206);
+	font-size: 1.6rem;
+	position: absolute;
+	bottom: -8.5%;
+	right: 41%;
+	width: 20%;
+	height: 7%;
 }

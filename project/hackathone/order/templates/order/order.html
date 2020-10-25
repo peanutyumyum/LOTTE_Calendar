@@ -23,6 +23,7 @@
             <div class="selectzone">
                 <form action="{% url 'order:order' %}" enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
+                        <input class="submit" type="submit" value="신청하기">
                         <div class="finishdate">
                             <h2>구독 시작 날짜</h2>
                             <span><label><input type="date" name="startdate" id="now_date" required></label></span>
@@ -37,7 +38,6 @@
                         </div>
                     <input type="hidden" name="product_name" value="{{product.name}}">
                     <input type="hidden" name="product_category" value="{{product.category.slug}}" >
-                    <input class="submit" type="submit" value="신청하기">
                 </form>
             </div>
         </div>
@@ -58,6 +58,7 @@
             <div class="selectzone">
                 <form action="{% url 'order:order' %}" enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
+                        <input class="submit" type="submit" value="신청하기">
                         <div class="finishdate">
                             <h2>배송 시작 날짜</h2>
                             <span><label><input type="date" name="startdate" id="now_date" required></label></span>
@@ -78,7 +79,6 @@
                         </div>
                     <input type="hidden" name="product_name" value="{{product.name}}">
                     <input type="hidden" name="product_category" value="{{product.category.slug}}" >
-                    <input class="submit" type="submit" value="신청하기">
                 </form>
             </div>
         </div>
