@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +9,32 @@
     <title>Document</title>
 </head>
 <body>
-
+  <div class = "topbox">
+    <div class="logo">
+        <a class="firstlogo" href="https://www.lotteon.com" target="blank"><img src="{% static '글자로고.png' %}" width="20%" ></a>
+    </div>
+</div>
     <div class="title">
     <h1>로그인</h1>
     </div>
 
 <form method="POST" action="{% url 'login:login' %}">
     {% csrf_token %}
+    
     <div class="textbox" >
         
         <input name="username" type="username" class="form-control" id="exampleInputEmail1"placeholder="L.POINT통합회원 아이디 입력">
 
     </div> 
+    <br>
+    <br>
     <div class="textbox" >
         
             <input name="password" type="password" class="form-control" id="exampleInputPassword1"placeholder="8~15자리 영문+숫자+특수문자조합">
         
-        </div> 
+        </div>
+        <br>
+        <br>
         <div class = 'question'>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href=''> 아이디/비밀번호 찾기   |</a><a href="{% url 'login:signup'%}">  회원가입</a>
         </div>
@@ -35,7 +44,18 @@
         <br>
         <div class="wrapper">
             <button type="submit" class="button">로그인하기</button>
-           </div> 
+          </div> 
+
+          <div class="undernav">
+            <div class="left">
+                <a href="https://www.lotteon.com" target="blank"> <img src="{% static 'LOTTE Calendar.png' %}" width="100%" height="100%"> </a>
+            </div>
+            <div class="right">
+                <a href="https://www.instagram.com/lotteon_official/" target="blank"><img src="{% static 'instagram.png' %}" width="90%" height="90%"  ></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+                <a href=" "><img src="{% static 'calendarimoji.png' %}" width="70%" height="70%"></a> 
+                <a href="https://www.facebook.com/TheLotteon/?hc_ref=ARTJli9seOFSXmNXthnaUnlLGDH5Fypz0GpY6CZ-lmokBpxUpv5kXk1ToeXeltUNSrQ&fref=nf&__tn__=kC-R"target="blank" ><img src="{% static 'facebook.png' %}" width="100%" height="100%"></a> &nbsp&nbsp    
+            </div> 
+        </div>
        
     </div> 
 </form>

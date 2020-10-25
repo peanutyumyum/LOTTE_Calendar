@@ -127,6 +127,7 @@ a:hover, a:active { text-decoration: none; }
     align-items: center;
     font-size: 2.5rem;
     position: absolute;
+    overflow: auto; /* if amount of contents is over, it could create scroll bar */
     left: 16%;
     bottom: 8%;
     width: 80%;
