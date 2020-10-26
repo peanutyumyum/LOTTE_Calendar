@@ -4,7 +4,7 @@
 
 ## Service
 
-link : http://15.165.53.83:8000/ (with AWS)
+link : http://3.34.121.141/ (with AWS EC2)
 
 introducing video link : https://www.youtube.com/watch?v=OZVPgMEfuSY&feature=youtu.be
 
@@ -28,4 +28,10 @@ Gang minji, Kim jieun, Kim jinwoo, JYP, Lee euna, Jung jiwon
 |Frontend|김지은|소개|
 |Backend|이은아|소프트웨어학부 2학년 휴학|
 |Backend|JYP|안녕하세유 개발자 박지윤입니다👻|
-|Backend|정지원|코딩 배운지 7개월차 개발자 정지원입니다~|
+|Backend|정지원|코딩 배운지 7개월 차 개발자 정지원입니다~|
+
+### 후기
+
+|이름|후기|
+|------|---|
+|정지원|배포.. 이제 그마내..달의 객잔 히든메뉴 먹으러 갑시닼|
